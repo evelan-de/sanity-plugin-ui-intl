@@ -1,7 +1,8 @@
 import {StructureBuilder} from 'sanity/structure'
+
 import {ResourceKeys, Resources} from './types'
-import {determineLocale, replaceWithVariable} from './utils'
 import {SupportedLanguageType} from './types'
+import {determineLocale, replaceWithVariable} from './utils'
 
 export const LOCALE_STORE_KEY = 'sanityStudio:ui:locale'
 
