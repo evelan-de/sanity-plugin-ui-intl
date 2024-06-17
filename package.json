@@ -71,6 +71,9 @@
   "peerDependencies": {
     "sanity": "^3"
   },
+  "optionalDependencies": {
+    "@rollup/rollup-linux-x64-gnu": "4.9.5"
+  },
   "engines": {
     "node": ">=18"
   }
