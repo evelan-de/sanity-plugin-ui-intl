@@ -1,99 +1,73 @@
-import { StructureBuilder } from 'sanity/structure';
+import {StructureBuilder} from 'sanity/structure'
+import {ResourceKeys, Resources} from './types'
+import {determineLocale, replaceWithVariable} from './utils'
+import {SupportedLanguageType} from './types'
 
-export const LOCALE_STORE_KEY = 'sanityStudio:ui:locale';
+export const LOCALE_STORE_KEY = 'sanityStudio:ui:locale'
 
-export type SupportedLanguageType = 'de' | 'en' | 'ru';
-
-type Resources = {
-  [key: string]: {
-    [key: string]: {
-      [key: string]: string;
-    };
-  };
-};
-
-type TranslateProps = {
-  S?: StructureBuilder;
-  namespace: 'structure' | 'schema';
-};
-
-function replaceWithVariable(
-  str: string,
-  variables: { [key: string]: string }
-): string {
-  return str.replace(/{{\s*(\w+)\s*}}/g, (match, variableName) => {
-    return variables[variableName] || match;
-  });
-}
-
-// ======================================================================================
-
-// T is the same as ResourcesKeys[typeof namespace]
-
-type NamespaceKeys = {
-  schema: string;
-  structure: string;
-};
-
-const translateWithoutStructureBuilder = <T extends NamespaceKeys>({
+const translateWithoutStructureBuilder = <R extends ResourceKeys, N extends string>({
   namespace,
   resources,
+  defaultLocale = 'de',
 }: {
-  resources: Resources;
-  namespace: 'structure' | 'schema';
+  resources: Resources
+  namespace: N
+  defaultLocale?: SupportedLanguageType
 }) => {
-  let locale = 'en-EN';
-
-  // Force english during development
-  // const isProd = process.env.NODE_ENV === 'production';
+  let locale: SupportedLanguageType = defaultLocale
 
   if (typeof window !== 'undefined') {
-    const path = window.location.pathname;
-    locale = path.includes('/en') ? 'en-EN' : 'de-DE';
+    const path = window.location.pathname
+    locale = determineLocale(path, defaultLocale)
   }
 
-  return (key: T[typeof namespace], args?: { [key: string]: string }) => {
-    const resource = resources[locale][namespace];
+  return (key: R[typeof namespace], args?: {[key: string]: string}) => {
+    const resource = resources[locale][namespace]
 
     if (args) {
-      return replaceWithVariable(resource[key], args);
+      return replaceWithVariable(resource[key], args)
     }
 
-    return resource[key] || key;
-  };
-};
+    return resource[key] || key
+  }
+}
 
-export const translate = <T extends NamespaceKeys>({
+export const translate = <R extends ResourceKeys, N extends string>({
   S,
   namespace,
   resources,
+  defaultLocale,
 }: {
-  S?: StructureBuilder;
-  namespace: 'structure' | 'schema';
-  resources: Resources;
+  S?: StructureBuilder
+  namespace: N
+  resources: Resources
+  defaultLocale?: SupportedLanguageType
 }) => {
   if (!S) {
-    return translateWithoutStructureBuilder<T>({ resources, namespace });
+    return translateWithoutStructureBuilder<R, N>({resources, namespace, defaultLocale})
   }
 
-  const { t } = S.context.i18n;
+  const {t} = S.context.i18n
 
-  return (key: T[typeof namespace], args?: Record<string, unknown>) =>
-    t(`${namespace}:${String(key)}`, args);
-};
+  return (key: R[typeof namespace], args?: Record<string, unknown>) =>
+    t(`${namespace}:${String(key)}`, args)
+}
 
-export const configureTranslate = <T extends NamespaceKeys>(customResources: Resources) => {
-  return ({
-    S,
-    namespace,
-  }: {
-    S?: StructureBuilder;
-    namespace: 'structure' | 'schema';
-  }) => {
-    return translate<T>({
+/**
+ *
+ * Type R is the type of the resource keys aka the identifier of the resource e.g 'common.title'
+ * Type N is the type of the namespace e.g 'schema' or 'structure'
+ */
+export const configureTranslate = <R extends ResourceKeys, N extends string>(
+  customResources: Resources,
+  defaultLocale?: SupportedLanguageType,
+) => {
+  return ({S, namespace}: {S?: StructureBuilder; namespace: N}) => {
+    return translate<R, N>({
       S,
       namespace,
       resources: customResources,
-    });
-  };
-};
+      defaultLocale,
+    })
+  }
+}
