@@ -19,5 +19,16 @@ module.exports = {
     "dist",
     "lint-staged.config.js",
     "package.config.ts"
-  ]
+  ],
+  "rules": {
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": ["error"],
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto"
+      },
+    ]
+  }
 };

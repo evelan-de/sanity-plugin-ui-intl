@@ -1,17 +1,17 @@
-import { PluginOptions, SingleWorkspace } from 'sanity';
-import { configureTranslate } from './translate';
+import {PluginOptions, SingleWorkspace} from 'sanity'
 
-export type SupportedLanguageType = 'de' | 'en' | 'ru';
+import {configureTranslate} from './translate'
+
+export type SupportedLanguageType = 'de' | 'en' | 'ru'
 
 type I18nConfigProps = {
-  config: SingleWorkspace;
-  locale: SupportedLanguageType;
+  config: SingleWorkspace
+  locale: SupportedLanguageType
   resources: {
-    [key in SupportedLanguageType]?: PluginOptions[];
-  };
-};
+    [_ in SupportedLanguageType]?: PluginOptions[]
+  }
+}
 
-// TODO: Add option to force english during development
 /**
  * Enhances the given Sanity UI configuration with internationalization (i18n) resources.
  * @param {I18nConfigProps} props - The configuration props.
@@ -21,28 +21,24 @@ type I18nConfigProps = {
  * @returns {SingleWorkspace} The updated Sanity UI configuration with i18n plugins added.
  * @throws {Error} Throws an error if no resources are found for the specified locale.
  */
-export const withSanityUiI18n = ({
-  config,
-  locale,
-  resources,
-}: I18nConfigProps) => {
-  const plugins: PluginOptions[] = [];
+export const withSanityUiI18n = ({config, locale, resources}: I18nConfigProps) => {
+  const plugins: PluginOptions[] = []
   if (!Array.isArray(config.plugins)) {
-    config.plugins = [];
+    config.plugins = []
   }
 
-  const localePlugins = resources[locale];
+  const localePlugins = resources[locale]
   if (!localePlugins) {
-    throw new Error(`No studio resources found for locale ${locale}`);
+    throw new Error(`No studio resources found for locale ${locale}`)
   }
 
   localePlugins.forEach((resource) => {
-    plugins.push(resource);
-  });
+    plugins.push(resource)
+  })
 
-  config.plugins.push(...plugins);
+  config.plugins.push(...plugins)
 
-  return config;
-};
+  return config
+}
 
-export { configureTranslate };
+export {configureTranslate}
