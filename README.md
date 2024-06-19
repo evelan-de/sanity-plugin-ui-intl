@@ -17,7 +17,7 @@ npm run link-watch
 This will publish the package into a local yalc registry
 Then in your sanity project's shell run:
 ```bash
-npx yalc add <your-plugin-package> && npx yalc add <your-plugin-package> --link && npm install
+npx yalc add sanity-plugin-ui-intl && npx yalc add sanity-plugin-ui-intl --link && npm install
 ```
 You can now change your plugin code, which will:
 - Trigger a rebuild using your watch task
@@ -29,8 +29,8 @@ You can now change your plugin code, which will:
 
 When you are done testing, you can run
 ```bash
-npx yalc remove <your-plugin-package> && yarn install
+npx yalc remove sanity-plugin-ui-intl && npm install
 ```
 to restore the version in package.json.
 
-See [sanity-io/plugin-kit(https://github.com/sanity-io/plugin-kit)
+See [sanity-io/plugin-kit](https://github.com/sanity-io/plugin-kit)
