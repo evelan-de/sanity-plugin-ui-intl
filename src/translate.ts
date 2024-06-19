@@ -4,8 +4,6 @@ import {ResourceKeys, Resources} from './types'
 import {SupportedLanguageType} from './types'
 import {determineLocale, replaceWithVariable} from './utils'
 
-export const LOCALE_STORE_KEY = 'sanityStudio:ui:locale'
-
 const translateWithoutStructureBuilder = <R extends ResourceKeys, N extends string>({
   namespace,
   resources,
