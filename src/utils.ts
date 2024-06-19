@@ -6,13 +6,16 @@ export function replaceWithVariable(str: string, variables: {[key: string]: stri
   })
 }
 
-export function determineLocale(pathname: string, defaultLocale: SupportedLanguageType = 'de') {
-  const path = pathname.split('/')
-  let locale = defaultLocale
-  if (path.includes('en')) {
-    locale = 'en'
-  } else if (path.includes('ru')) {
-    locale = 'ru'
+export function determineLocale(
+  pathname: string,
+  defaultLocale: SupportedLanguageType = 'de',
+): SupportedLanguageType {
+  const locales: SupportedLanguageType[] = ['en', 'ru', 'de']
+  const firstSegment = pathname.split('/')[1] // The first segment is the locale e.g. /en, /ru, /de or / as default
+
+  if (locales.includes(firstSegment as SupportedLanguageType)) {
+    return firstSegment as SupportedLanguageType
   }
-  return locale
+
+  return defaultLocale
 }
