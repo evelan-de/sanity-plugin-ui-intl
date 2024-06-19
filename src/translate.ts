@@ -53,7 +53,6 @@ export const translate = <R extends ResourceKeys, N extends string>({
 }
 
 /**
- *
  * Type R is the type of the resource keys aka the identifier of the resource e.g 'common.title'
  * Type N is the type of the namespace e.g 'schema' or 'structure'
  */
