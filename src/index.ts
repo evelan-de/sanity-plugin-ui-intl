@@ -2,7 +2,7 @@ import {PluginOptions, SingleWorkspace} from 'sanity'
 
 import {configureTranslate} from './translate'
 
-export type SupportedLanguageType = 'de' | 'en' | 'ru'
+export type SupportedLanguageType = 'de' | 'en' | 'ru' | 'fr' | 'es' | 'zh'
 
 type I18nConfigProps = {
   config: SingleWorkspace

@@ -10,7 +10,7 @@ export function determineLocale(
   pathname: string,
   defaultLocale: SupportedLanguageType = 'de',
 ): SupportedLanguageType {
-  const locales: SupportedLanguageType[] = ['en', 'ru', 'de']
+  const locales: SupportedLanguageType[] = ['en', 'ru', 'de', 'fr', 'es', 'zh']
   const firstSegment = pathname.split('/')[1] // The first segment is the locale e.g. /en, /ru, /de or / as default
 
   if (locales.includes(firstSegment as SupportedLanguageType)) {
