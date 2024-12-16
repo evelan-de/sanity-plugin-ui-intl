@@ -1,4 +1,4 @@
-export type SupportedLanguageType = 'de' | 'en' | 'ru' | 'fr' | 'es' | 'zh'
+export type SupportedLanguageType = 'de' | 'en' | 'ru' | 'fr' | 'es' | 'zh' | 'ar'
 
 export type Resources = {
   [key: string]: {
