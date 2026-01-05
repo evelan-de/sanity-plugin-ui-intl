@@ -5,6 +5,14 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.0.0 (2026-01-05)
+
+- feat!: upgrade to sanity v5 and react 19 ([b87377d](https://github.com/evelan-de/sanity-plugin-ui-intl/commit/b87377d))
+
+### BREAKING CHANGE
+
+- Bump Sanity to v5 and React/ReactDOM/react-is to 19.
+
 ## <small>1.3.2 (2025-08-11)</small>
 
 - Merge pull request #4 from evelan-de/chore/add-semantic-release ([61a6a7e](https://github.com/evelan-de/sanity-plugin-ui-intl/commit/61a6a7e)), closes [#4](https://github.com/evelan-de/sanity-plugin-ui-intl/issues/4)
