@@ -1,6 +1,6 @@
-import {defineConfig} from '@sanity/pkg-utils'
+const {defineConfig} = require('@sanity/pkg-utils')
 
-export default defineConfig({
+module.exports = defineConfig({
   dist: 'dist',
   tsconfig: 'tsconfig.dist.json',
 
