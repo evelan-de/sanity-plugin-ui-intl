@@ -5,6 +5,11 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>2.0.1 (2026-03-31)</small>
+
+- chore: upgrade dev dependencies to latest versions ([13e4795](https://github.com/evelan-de/sanity-plugin-ui-intl/commit/13e4795))
+- fix: add workflow permissions and remove npm token from semantic-release ([0c1a0f0](https://github.com/evelan-de/sanity-plugin-ui-intl/commit/0c1a0f0))
+
 ## 2.0.0 (2026-01-05)
 
 - feat!: upgrade to sanity v5 and react 19 ([b87377d](https://github.com/evelan-de/sanity-plugin-ui-intl/commit/b87377d))
